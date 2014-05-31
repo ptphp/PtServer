@@ -96,7 +96,7 @@ def unzip(file,output_dir = None):
 def compress_dir(dir,name,no_zip_res_plugin = []):
     print "compress to :"+name
     print "-"*40
-    with zipfile.ZipFile(name, 'w') as izip:
+    with zipfile.ZipFile(name, 'w',zipfile.ZIP_DEFLATED) as izip:
         for root, dirs, files in os.walk(dir):
             for file in files:
 
