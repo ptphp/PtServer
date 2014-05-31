@@ -34,44 +34,9 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>日志</string>
-    </property>
-    <widget class="QMenu" name="menuNginx">
-     <property name="title">
-      <string>nginx</string>
-     </property>
-     <addaction name="actionError_log"/>
-     <addaction name="actionAccess_log"/>
-    </widget>
-    <addaction name="menuNginx"/>
-    <addaction name="separator"/>
-   </widget>
-   <widget class="QMenu" name="menu_2">
-    <property name="title">
-     <string>配置</string>
-    </property>
-    <widget class="QMenu" name="menuNginx_2">
-     <property name="title">
-      <string>nginx</string>
-     </property>
-     <addaction name="actionNginx_conf"/>
-     <addaction name="actionSites_conf"/>
-    </widget>
-    <widget class="QMenu" name="menuPhp">
-     <property name="title">
-      <string>php</string>
-     </property>
-     <addaction name="actionPhpIni"/>
-    </widget>
-    <addaction name="menuNginx_2"/>
-    <addaction name="menuPhp"/>
-    <addaction name="actionPtserver"/>
-   </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
-     <string>tools</string>
+     <string>工具</string>
     </property>
     <addaction name="actionHosts"/>
     <addaction name="actionWinscp"/>
@@ -85,7 +50,7 @@
     </property>
     <widget class="QMenu" name="menuDocs">
      <property name="title">
-      <string>docs</string>
+      <string>文档</string>
      </property>
      <addaction name="actionPyside"/>
     </widget>
@@ -97,46 +62,10 @@
      <string>目录</string>
     </property>
     <addaction name="actionPtServer"/>
-    <addaction name="actionWebroot"/>
    </widget>
-   <widget class="QMenu" name="menuService">
-    <property name="title">
-     <string>service</string>
-    </property>
-    <widget class="QMenu" name="menuMemcached">
-     <property name="title">
-      <string>memcached</string>
-     </property>
-     <addaction name="mem_start_act"/>
-     <addaction name="mem_stop_act"/>
-     <addaction name="mem_install_act"/>
-    </widget>
-    <widget class="QMenu" name="menuMysql">
-     <property name="title">
-      <string>mysql</string>
-     </property>
-     <addaction name="mysql_start_act"/>
-     <addaction name="mysql_stop_act"/>
-     <addaction name="mysql_install_act"/>
-    </widget>
-    <widget class="QMenu" name="menuMongodb">
-     <property name="title">
-      <string>mongodb</string>
-     </property>
-     <addaction name="mongodb_start_act"/>
-     <addaction name="mongodb_stop_act"/>
-     <addaction name="mongodb_install_act"/>
-    </widget>
-    <addaction name="menuMemcached"/>
-    <addaction name="menuMysql"/>
-    <addaction name="menuMongodb"/>
-   </widget>
-   <addaction name="menu"/>
-   <addaction name="menu_2"/>
    <addaction name="menuTools"/>
    <addaction name="menu_3"/>
    <addaction name="menu_4"/>
-   <addaction name="menuService"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionError_log">
@@ -166,7 +95,7 @@
   </action>
   <action name="actionHosts">
    <property name="text">
-    <string>hosts</string>
+    <string>hosts.exe</string>
    </property>
   </action>
   <action name="actionWinscp">
@@ -201,7 +130,7 @@
   </action>
   <action name="actionCertmgr">
    <property name="text">
-    <string>certmgr</string>
+    <string>证书管理</string>
    </property>
   </action>
   <action name="actionPtServer">
@@ -211,12 +140,12 @@
   </action>
   <action name="actionWebroot">
    <property name="text">
-    <string>webroot</string>
+    <string>网站目录</string>
    </property>
   </action>
   <action name="actionEnv">
    <property name="text">
-    <string>env</string>
+    <string>环境变量</string>
    </property>
   </action>
   <action name="actionSites_conf">
