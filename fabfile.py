@@ -4,7 +4,9 @@
 from fabric.api import run,put,cd,env,local
 import shutil,os
 import py_compile
-
+import zipfile
+from library.core.utils import unzip,compress_dir
+from library.core.dist_zip import zip_local
 __author__ = 'Joseph'
 
 UpxEXE = os.path.join(os.getcwd(),"usr/bin/upx.exe")
@@ -54,7 +56,7 @@ def makeDir(path):
     return True
 
 
-def unzip(zip_file,out_dir):
+def unzip_7z(zip_file,out_dir):
     local(SevenZipEXE+' -aoa x "'+zip_file+'" -o "'+out_dir+'"')
 
 
@@ -202,3 +204,17 @@ def gen_htpasswd():
     path = os.path.join(dist_dir,"etc/nginx_win/htpasswd")
     os.remove(path)
     subprocess.call("./usr/bin/htpasswd -c "+path+" ptserver")
+
+#>fab do_zip_local:name=mongodb-2.4.5
+def do_zip_local(name= None):
+    if name is None:
+        print "name is none"
+    dir = os.path.abspath(os.path.join('../','usr'))
+    zip_local(dir,name)
+
+#fab -H root@al.ptphp.com do_push_zip
+def do_push_zip():
+    r_dir = "/var/www/html/PtServer/local"
+    dir = os.path.abspath(os.path.join('../','usr',"local_zip"))
+    for file in os.listdir(dir):
+        put(os.path.join(dir,file),r_dir)

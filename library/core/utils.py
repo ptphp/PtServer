@@ -3,7 +3,11 @@ from PySide.QtCore import *
 from PySide.QtGui import *
 import datetime
 import simplejson as json
-import zipfile,os
+import zipfile,os,shutil
+
+def rmtree(dir):
+    if os.path.exists(dir):
+        shutil.rmtree(dir)
 
 class UiLoader(QUiLoader):
     def __init__(self, baseinstance):
@@ -81,10 +85,32 @@ def unzip(file,output_dir = None):
     zfile = zipfile.ZipFile(file,'r')
     for name in zfile.namelist():
         (dirname, filename) = os.path.split(name)
-        if not os.path.exists(dirname):
-            makeDir(dirname)
-        zfile.extract(name, dirname)
+        abs_dir_name = os.path.abspath(os.path.join(output_dir,dirname))
+        if not os.path.exists(abs_dir_name):
+            makeDir(abs_dir_name)
+        print "unzip to : "+os.path.join(output_dir,name)
+        zfile.extract(name, output_dir)
+    zfile.close()
 
+
+def compress_dir(dir,name,no_zip_res_plugin = []):
+    print "compress to :"+name
+    print "-"*40
+    with zipfile.ZipFile(name, 'w') as izip:
+        for root, dirs, files in os.walk(dir):
+            for file in files:
+
+                need_com = True
+                abs_path =  os.path.abspath(os.path.join(dir,root,file))
+                for nn in no_zip_res_plugin:
+                    if abs_path.find(os.path.abspath(os.path.join(dir,nn))) >=0:
+                        need_com = False
+                if need_com:
+                    print "compress ==>>",root+"\\"+file
+                    izip.write(os.path.join(root, file))
+                else:
+                    print "filter ==>>",root+"\\"+file
+        izip.close()
 def debug(msg,type = "sys"):
     res = dict(
         type=type,
