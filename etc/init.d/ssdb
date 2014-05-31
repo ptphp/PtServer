@@ -1,0 +1,36 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: ssdb
+# Required-Start: $local_fs $remote_fs $network $syslog
+# Required-Stop: $local_fs $remote_fs $network $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: starts the ssdb
+# Description: starts ssdb
+### END INIT INFO
+ssdb_root=/usr/local/ssdb
+# each config file for one instance
+# configs="/data/ssdb_data/test/ssdb.conf /data/ssdb_data/test2/ssdb.conf"
+configs="/usr/local/ssdb/ssdb.conf"
+case "$1" in
+ 'start')
+  for conf in $configs; do
+   $ssdb_root/ssdb-ins.sh start $conf
+  done
+  ;;
+ 'stop')
+  for conf in $configs; do
+   $ssdb_root/ssdb-ins.sh stop $conf
+  done
+  ;;
+ 'restart')
+  for conf in $configs; do
+   $ssdb_root/ssdb-ins.sh restart $conf
+  done
+  ;;
+ *)
+  echo "Usage: $0 {start|stop|restart}"
+  exit 1
+ ;;
+esac
+exit 0
