@@ -1,10 +1,10 @@
-from unittest import TestCase
+from library.TestApp import BaseTestCase
 from library.core.ptprocess import PtProcess
 from PySide.QtCore import QProcess
 import re,subprocess
-from core.ptprocess import PtProcess
-
-class TestPtProcess(TestCase):
+from library.core.ptprocess import PtProcess
+import os
+class TestPtProcess(BaseTestCase):
     def setUp(self):
         self.proc = PtProcess()
         super(TestPtProcess, self).setUp()
@@ -73,3 +73,9 @@ class TestPtProcess(TestCase):
     def test_task_kill(self):
         cmd = 'taskkill /F /IM PING.EXE > nul'
         subprocess.Popen(cmd, shell=True,close_fds=True)
+    def test_ca(self):
+
+        cmd = "certutil.exe -addstore root "+os.path.join(self.win.path,"var","ptphp.com.cer")
+        print cmd
+        res = self.win.proc.cmd(cmd)
+        print res

@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>716</width>
+    <height>379</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>宋体</family>
+    <pointsize>9</pointsize>
+    <weight>50</weight>
+    <bold>false</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="documentMode">
+   <bool>false</bool>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>441</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Nginx</string>
+    </property>
+    <widget class="QPushButton" name="nginx_start_btn">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>81</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>start</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="nginx_reload_btn">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>20</y>
+       <width>121</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Reload Nginx</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPlainTextEdit" name="debug_edt">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>150</y>
+      <width>681</width>
+      <height>181</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Courier</family>
+      <pointsize>9</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="lineWrapMode">
+     <enum>QPlainTextEdit::NoWrap</enum>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>80</y>
+      <width>441</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>PHP-CGI</string>
+    </property>
+    <widget class="QPushButton" name="php_restart_btn">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>121</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Restart PHP</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>540</x>
+      <y>10</y>
+      <width>120</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>tools</string>
+    </property>
+    <widget class="QPushButton" name="check_port_btn">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>check ports</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="kill_port_btn">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>kill ports</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>716</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>日志</string>
+    </property>
+    <widget class="QMenu" name="menuNginx">
+     <property name="title">
+      <string>nginx</string>
+     </property>
+     <addaction name="actionError_log"/>
+     <addaction name="actionAccess_log"/>
+    </widget>
+    <addaction name="menuNginx"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>配置</string>
+    </property>
+    <widget class="QMenu" name="menuNginx_2">
+     <property name="title">
+      <string>nginx</string>
+     </property>
+     <addaction name="actionNginx_conf"/>
+     <addaction name="actionSites_conf"/>
+    </widget>
+    <widget class="QMenu" name="menuPhp">
+     <property name="title">
+      <string>php</string>
+     </property>
+     <addaction name="actionPhpIni"/>
+    </widget>
+    <addaction name="menuNginx_2"/>
+    <addaction name="menuPhp"/>
+    <addaction name="actionPtserver"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>tools</string>
+    </property>
+    <addaction name="actionHosts"/>
+    <addaction name="actionWinscp"/>
+    <addaction name="actionPutty"/>
+    <addaction name="actionCertmgr"/>
+    <addaction name="actionEnv"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>网站</string>
+    </property>
+    <widget class="QMenu" name="menuDocs">
+     <property name="title">
+      <string>docs</string>
+     </property>
+     <addaction name="actionPyside"/>
+    </widget>
+    <addaction name="actionLocalhost"/>
+    <addaction name="menuDocs"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>目录</string>
+    </property>
+    <addaction name="actionPtServer"/>
+    <addaction name="actionWebroot"/>
+   </widget>
+   <widget class="QMenu" name="menuService">
+    <property name="title">
+     <string>service</string>
+    </property>
+    <widget class="QMenu" name="menuMemcached">
+     <property name="title">
+      <string>memcached</string>
+     </property>
+     <addaction name="mem_start_act"/>
+     <addaction name="mem_stop_act"/>
+     <addaction name="mem_install_act"/>
+    </widget>
+    <widget class="QMenu" name="menuMysql">
+     <property name="title">
+      <string>mysql</string>
+     </property>
+     <addaction name="mysql_start_act"/>
+     <addaction name="mysql_stop_act"/>
+     <addaction name="mysql_install_act"/>
+    </widget>
+    <widget class="QMenu" name="menuMongodb">
+     <property name="title">
+      <string>mongodb</string>
+     </property>
+     <addaction name="mongodb_start_act"/>
+     <addaction name="mongodb_stop_act"/>
+     <addaction name="mongodb_install_act"/>
+    </widget>
+    <addaction name="menuMemcached"/>
+    <addaction name="menuMysql"/>
+    <addaction name="menuMongodb"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menuTools"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+   <addaction name="menuService"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionError_log">
+   <property name="text">
+    <string>error.log</string>
+   </property>
+  </action>
+  <action name="actionAccess_log">
+   <property name="text">
+    <string>access.log</string>
+   </property>
+  </action>
+  <action name="actionNginx_conf">
+   <property name="text">
+    <string>nginx.conf</string>
+   </property>
+  </action>
+  <action name="actionPhp55">
+   <property name="text">
+    <string>php55</string>
+   </property>
+  </action>
+  <action name="actionPhpIni">
+   <property name="text">
+    <string>php.ini</string>
+   </property>
+  </action>
+  <action name="actionHosts">
+   <property name="text">
+    <string>hosts</string>
+   </property>
+  </action>
+  <action name="actionWinscp">
+   <property name="text">
+    <string>winscp</string>
+   </property>
+  </action>
+  <action name="actionPutty">
+   <property name="text">
+    <string>putty</string>
+   </property>
+  </action>
+  <action name="actionLocalhost">
+   <property name="text">
+    <string>localhost</string>
+   </property>
+  </action>
+  <action name="actionManage">
+   <property name="text">
+    <string>manage</string>
+   </property>
+  </action>
+  <action name="actionPyside">
+   <property name="text">
+    <string>pyside</string>
+   </property>
+  </action>
+  <action name="actionDesigner">
+   <property name="text">
+    <string>designer</string>
+   </property>
+  </action>
+  <action name="actionCertmgr">
+   <property name="text">
+    <string>certmgr</string>
+   </property>
+  </action>
+  <action name="actionPtServer">
+   <property name="text">
+    <string>PtServer</string>
+   </property>
+  </action>
+  <action name="actionWebroot">
+   <property name="text">
+    <string>webroot</string>
+   </property>
+  </action>
+  <action name="actionEnv">
+   <property name="text">
+    <string>env</string>
+   </property>
+  </action>
+  <action name="actionSites_conf">
+   <property name="text">
+    <string>sites</string>
+   </property>
+  </action>
+  <action name="actionPtserver">
+   <property name="text">
+    <string>ptserver</string>
+   </property>
+  </action>
+  <action name="mem_start_act">
+   <property name="text">
+    <string>start</string>
+   </property>
+  </action>
+  <action name="mem_install_act">
+   <property name="text">
+    <string>install</string>
+   </property>
+  </action>
+  <action name="mysql_start_act">
+   <property name="text">
+    <string>start</string>
+   </property>
+  </action>
+  <action name="mysql_stop_act">
+   <property name="text">
+    <string>stop</string>
+   </property>
+  </action>
+  <action name="mysql_install_act">
+   <property name="text">
+    <string>install</string>
+   </property>
+  </action>
+  <action name="mongodb_start_act">
+   <property name="text">
+    <string>start</string>
+   </property>
+  </action>
+  <action name="mongodb_stop_act">
+   <property name="text">
+    <string>stop</string>
+   </property>
+  </action>
+  <action name="mongodb_install_act">
+   <property name="text">
+    <string> install</string>
+   </property>
+  </action>
+  <action name="mem_stop_act">
+   <property name="text">
+    <string>stop</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

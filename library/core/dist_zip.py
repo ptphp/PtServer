@@ -30,6 +30,9 @@ no_zip_res = {
     ],
     "mysql-5.1":[
         'data/',
+    ],
+    "openssl-1.9.8":[
+        'certs/',
     ]
 }
 

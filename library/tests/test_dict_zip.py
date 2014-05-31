@@ -25,7 +25,7 @@ class TestDistZip(TestCase):
 
     def test_zip_local(self):
         dir = "D:\\usr"
-        name = "mysql-5.1"
+        name = "openssl-1.9.8"
         zip_local(dir,name)
 
     def test_unzip_local(self):

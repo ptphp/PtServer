@@ -6,12 +6,16 @@ import ConfigParser
 from PySide.QtCore import *
 from PySide.QtGui import *
 from PySide.QtNetwork import *
+from PySide.QtWebKit import QWebView
 from library.core.utils import loadUi,PtDebugView,debug
 from library.core.controls import PortControl,PhpControl,NginxControl
 from library.core.baseapp import BaseApp
 from library.core.actions import BaseAction
 from library.core.buttons import BaseButtons
 from library.core.ptprocess import PtProcess
+
+from library.core.ptwebview import PtWebView
+
 import zipfile
 
 ERROR, WARNING, INFO, DEBUG = range(4)
@@ -48,7 +52,7 @@ def makeDir(path):
 
 class MainWindow(QMainWindow,BaseApp,BaseAction,BaseButtons):
     path = None
-
+    debug_edt = None
     def __init__(self,debug_level=ERROR,debug_stream = sys.stderr,path = "",test = False):
         super(MainWindow, self).__init__()
         self.path = path
@@ -61,13 +65,19 @@ class MainWindow(QMainWindow,BaseApp,BaseAction,BaseButtons):
         self.setWindowTitle("PtServer")
         self.debug_level = debug_level
         self.debug_stream = debug_stream
-        self.debugView = PtDebugView(self)
+        self.webview = QWebView(self)
+
+        self.setCentralWidget(self.webview)
+        self.webview.load("https://ptserver.ptphp.com")
+
+        #self.debugView = PtDebugView(self)
+
         self.controls = {
                 'nginx' : NginxControl(self),
                 'php' : PhpControl(self),
                 'port' : PortControl(self),
                 }
-        self.set_buttons()
+        #self.set_buttons()
         self.icon = QIcon()
         icon_path = os.path.join(self.path,"var",'res','title.png')
         self.icon.addPixmap(QPixmap(icon_path),QIcon.Normal,QIcon.Off)
@@ -107,41 +117,6 @@ class MainWindow(QMainWindow,BaseApp,BaseAction,BaseButtons):
                 event.ignore()
     def make_dirs(self):
         return
-        for dir in dirs:
-            makeDir(os.path.join(self.path,dir))
-        mysql_data_path = os.path.join(self.path,"var/data/mysql/mysql")
-
-        if False == os.path.isdir(mysql_data_path):
-            mysql_ini_path = os.path.join(self.path,"usr/local/mysql/my.ini")
-            f = open(mysql_ini_path)
-            _ini_content = ''
-            for line in f.read().split("\n"):
-                if line.startswith("log-error="):
-                    line = "log-error={0}/var/logs/mysql/error.log".format(self.path.replace("\\","/"))
-                if line.startswith("log="):
-                    line = "log-error={0}/var/logs/mysql/mysql.log".format(self.path.replace("\\","/"))
-                if line.startswith("log-slow-queries="):
-                    line = "log-error={0}/var/logs/mysql/slowquery.log".format(self.path.replace("\\","/"))
-                if line.startswith("basedir"):
-                    line = "basedir={0}/usr/local/mysql".format(self.path.replace("\\","/"))
-                if line.startswith("datadir"):
-                    line = "datadir={0}/var/data/mysql".format(self.path.replace("\\","/"))
-
-                _ini_content += line+"\n"
-            f.close()
-            f = open(mysql_ini_path,"w")
-            f.write(_ini_content)
-            f.close()
-
-            zfile = zipfile.ZipFile(os.path.join(self.path,"var/data/mysql/mysql.zip"),'r')
-            for name in zfile.namelist():
-                (dirname, filename) = os.path.split(name)
-                dirname = os.path.join(self.path,"var/data/mysql/")
-                self.debug("Decompressing " + filename + " on " + dirname,"app")
-                if not os.path.exists(dirname):
-                    os.makedirs(dirname)
-                zfile.extract(name, dirname)
-
 
 class QSingleApplication(QApplication):
     def singleStart(self, mainWindow):
