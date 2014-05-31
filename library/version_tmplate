@@ -1,0 +1,40 @@
+[Setup]
+AppId={{88B330D8-B45E-4CFE-A0FC-DA690A4570B5}
+AppName=PtServer
+AppVerName=PtServer V1.0
+AppPublisher=PtPHP
+AppPublisherURL=http://www.ptphp.com/
+AppSupportURL=http://www.ptphp.com/
+AppUpdatesURL=http://www.ptphp.com/
+DefaultDirName=#DefaultDirName#
+UsePreviousAppDir=yes
+DefaultGroupName=PtServer
+AllowNoIcons=yes
+OutputBaseFilename=#setup_name#
+Compression=lzma
+SolidCompression=yes
+
+[Languages]
+Name: "chinese"; MessagesFile: "compiler:Default.isl"
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+
+[Files]
+
+;Source: "E:\workspace\PtServer\dist\App.exe"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "E:\workspace\PtServer\dist\imageformats\*"; DestDir: "{app}\imageformats"; Flags: ignoreversion recursesubdirs createallsubdirs
+
+#Files#
+
+[Icons]
+Name: "{group}\PtServer"; Filename: "{app}\App.exe"
+Name: "{group}\{cm:ProgramOnTheWeb,PtServer}"; Filename: "http://www.ptphp.com/"
+Name: "{group}\{cm:UninstallProgram,PtServer}"; Filename: "{uninstallexe}"
+Name: "{commondesktop}\PtServer"; Filename: "{app}\App.exe"; Tasks: desktopicon
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\PtServer"; Filename: "{app}\App.exe"; Tasks: quicklaunchicon
+
+
+[Run]
+Filename: "{app}\App.exe"; Description: "{cm:LaunchProgram,PtServer}"; Flags: nowait postinstall skipifsilent

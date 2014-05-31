@@ -1,0 +1,11 @@
+server {
+  listen *:80;
+  server_name manage.com;
+
+  location / {
+    auth_basic           "closed site";
+    auth_basic_user_file htpasswd;
+
+    proxy_pass  http://127.0.0.1:8121;
+  }
+}

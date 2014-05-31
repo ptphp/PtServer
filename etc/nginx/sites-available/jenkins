@@ -1,0 +1,10 @@
+server {
+	listen *:80;
+	server_name ci.ptphp.com;	
+	auth_basic           "closed site";
+    auth_basic_user_file htpasswd;
+
+	location / {
+		proxy_pass  http://127.0.0.1:8081;
+	}
+}

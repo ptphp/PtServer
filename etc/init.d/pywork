@@ -1,0 +1,28 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          pywork
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: starts the pywork
+# Description:       starts pywork using start-stop-daemon
+### END INIT INFO
+
+NAME=PyWork
+
+case "$1" in
+    start)
+        echo "${NAME} starting... "
+        start-stop-daemon --start --background --exec /root/work.py
+	;;
+    stop)
+	echo "${NAME} stopping... "
+        start-stop-daemon --stop --name python /root/work.py
+        ;;
+    *)
+	echo "Usage: {start|stop}" >&2
+	exit 1
+	;;
+esac
+exit 0
