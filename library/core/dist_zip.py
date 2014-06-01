@@ -4,6 +4,26 @@ import os,zipfile
 from .utils import makeDir
 
 from library.core.utils import compress_dir,unzip
+
+
+no_zip_res = {
+    'mongodb-2.4.5':[
+        "data/",
+        "logs/",
+    ],
+    "mysql-5.1":[
+        'data/',
+    ],
+    "openssl-1.9.8":[
+        'certs/',
+    ],
+    'nginx-1.5.12':[
+        'conf/certs/ptphp.com.key'
+        'conf/certs/ptphp.net.key'
+    ]
+}
+
+
 def get_zip_version(name,dir):
     path = os.path.join(dir,name)
     print "get version :" + path
@@ -22,19 +42,6 @@ def zip_local_all(dir):
     dir_local = os.path.join(dir,"local")
     for plugin_name in os.listdir(dir_local):
         zip_local(dir,plugin_name)
-
-no_zip_res = {
-    'mongodb-2.4.5':[
-        "data/",
-        "logs/",
-    ],
-    "mysql-5.1":[
-        'data/',
-    ],
-    "openssl-1.9.8":[
-        'certs/',
-    ]
-}
 
 
 def zip_local(dir,name):
