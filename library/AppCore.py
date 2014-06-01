@@ -23,21 +23,6 @@ ERROR, WARNING, INFO, DEBUG = range(4)
 config = ConfigParser.RawConfigParser()
 config_filename = "config.cfg"
 
-dirs = [
-            "logs",
-            "var/logs/nginx",
-            "var/logs/mysql",
-            "var/logs/mongodb",
-            "var/data/mongodb",
-            "var/data/ssdb",
-            "var/data/mysql",
-            "temp/client_body_temp",
-            "temp/fastcgi_temp",
-            "temp/fastcgi_temp",
-            "temp/uwsgi_temp",
-        ]
-
-
 
 def makeDir(path):
     path = os.path.abspath(path)
@@ -68,7 +53,7 @@ class MainWindow(QMainWindow,BaseApp,BaseAction,BaseButtons):
         self.webview = QWebView(self)
 
         self.setCentralWidget(self.webview)
-        self.webview.load("https://ptserver.ptphp.com")
+        self.webview.load("http://theme.ptphp.net/theme/cleanzone/")
 
         #self.debugView = PtDebugView(self)
 
